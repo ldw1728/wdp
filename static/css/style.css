@@ -1,0 +1,10 @@
+@font-face {
+    font-family: "NotoSansKR"; /* 사용하고 싶은 font-family명을 지정 */
+    font-style: normal;
+    src: local("../font/NotoSansKR-Regular.ttf") format("truetype"); /* 폰트파일 불러오기 */
+}
+
+body{
+    font-family: 'NotoSansKR';
+    
+}
