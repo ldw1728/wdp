@@ -1,10 +1,37 @@
 @font-face {
-    font-family: "NotoSansKR"; /* 사용하고 싶은 font-family명을 지정 */
+    font-family: "NotoSerifKR"; /* 사용하고 싶은 font-family명을 지정 */
     font-style: normal;
-    src: local("../font/NotoSansKR-Regular.ttf") format("truetype"); /* 폰트파일 불러오기 */
+    src: local("../font/NotoSerifKR-Regular.otf") format("opentype"); /* 폰트파일 불러오기 */
+}
+@font-face {
+    font-family: "NotoSansKR"; /* 사용하고 싶은 font-family명을 지정 */
+    font-style: bold;
+    src: local("../font/NotoSansKR-ExtraBold.ttf") format("truetype"); /* 폰트파일 불러오기 */
 }
 
+@font-face {
+    font-family: "NanumMy"; /* 사용하고 싶은 font-family명을 지정 */
+    font-style: bold;
+    src: local("../font/NanumMyeongjo-Bold.ttf") format("truetype"); /* 폰트파일 불러오기 */
+}
+
+
+
 body{
-    font-family: 'NotoSansKR';
-    
+    font-family: 'NanumMy';
+}
+
+
+
+section {
+    /* background-image: url('../img/main_bg.jpg');
+    background-size: cover; */
+    background-color: #f7f7f7;
+}
+
+.whiteline{
+    background-color: white;
+    width: auto;
+    height: 3px;
+    border-radius: 10px;
 }
