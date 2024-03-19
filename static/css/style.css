@@ -15,10 +15,15 @@
     src: local("../font/NanumMyeongjo-Bold.ttf") format("truetype"); /* 폰트파일 불러오기 */
 }
 
+@font-face {
+    font-family: "songle"; /* 사용하고 싶은 font-family명을 지정 */
+    src: url("../font/nanumson.ttf") format("truetype"); /* 폰트파일 불러오기 */
+}
+
 
 
 body{
-    font-family: 'NanumMy';
+    font-family: 'songle';
 }
 
 
@@ -30,7 +35,7 @@ section {
 }
 
 .whiteline{
-    background-color: white;
+    background-color: e3a0a3;
     width: auto;
     height: 3px;
     border-radius: 10px;

@@ -9,19 +9,19 @@
         <!-- intro -->
         <section class="intro-sec h-full min-h-[760px]">
              <div class="relative max-w-screen-md bg-[#e3a0a3] mx-auto border-double border-white border-t-8 border-r-8 border-l-8 h-full">
-                <div class="relative w-5/6 mx-auto text-center h-5/6 top-20 border-solid border-white border-8">
+                <div id="intro-line" class="relative w-5/6 mx-auto text-center h-5/6 top-20 border-solid border-white border-8">
                     <div class="ransition-all flex justify-center p-9 h-3/4 text-white h-full" style="align-items: center;">
                         <div class="transition-all h-fit ">
                             </br>
                             <div class="transition-all text-4xl sm:text-5xl">저희,</div></br>
-                            <div class="transition-all text-4xl sm:text-5xl mb-20">결혼합니다</div>
-                            <div class="transition-all text-3xl sm:text-4xl ">이동욱</div>
+                            <div class="transition-all text-5xl sm:text-6xl mb-20">결혼합니다</div>
+                            <div class="transition-all text-4xl sm:text-5xl ">이동욱</div>
                             <div class="transition-all text-3xl text-xl sm:text-2xl font-bold my-5">&</div>
-                            <div class="transition-all text-3xl sm:text-4xl ">김혜미</div>
+                            <div class="transition-all text-4xl sm:text-5xl ">김혜미</div>
                             <div class="whiteline my-10"></div>
                             <div class="py-10 sm:py-10">
-                                <div class="transition-all  text-sm sm:text-xl ">2024.05.25 토요일 6시 30분</div>
-                            <div class="transition-all text-sm sm:text-xl ">세빛섬 플로팅아일랜드 2층 컨벤션홀</div>
+                                <div class="transition-all text-xl sm:text-2xl ">2024.05.25 토요일 6시 30분</div>
+                            <div class="transition-all text-xl sm:text-2xl ">세빛섬 플로팅아일랜드 2층 컨벤션홀</div>
                             </div>
                         </div>
                         
@@ -63,7 +63,7 @@
                                 <div>김선근</div>
                                 <div>장순실</div>
                             </span>
-                            <span class="relative top-[16px] p-4">의 &nbsp;딸&nbsp;&nbsp;</span>
+                            <span class="relative top-[16px] p-4">의 &nbsp;딸</span>
                             <span class="relative top-[16px] text-xl sm:text-2xl font-bold">김혜미</span>
                         </div>
                     </div>
@@ -75,11 +75,11 @@
             <div class="relative text-white max-w-screen-md bg-[#e3a0a3] mx-auto border-double border-white border-r-8 border-l-8">
                 <div class="py-10 w-fit relative m-auto">
                     <img class="mb-7 mx-4 w-10 inline" src="static/img/map_icon.png">
-                    <span class="text-center text-2xl sm:text-3xl font-bold">
+                    <span class=" text-2xl sm:text-3xl font-bold">
                         오시는 길
                     </span>
                 </div>
-                <div class="relative m-auto w-full h-96" id="map" style=""></div>
+                <div class="relative m-auto w-full h-96" id="map"></div>
                 <div class="w-fit relative m-auto py-10 text-left">
                     <div class="font-bold text-center py-5">
                         <div class="transition-all text-lg sm:text-xl">세빛섬 플로팅아일랜드 컨벤션(2층)</div>
@@ -177,18 +177,18 @@
             </div>
         </section>
         <!-- etc -->
-        <section class="size-full bg-white">
-            <div class="max-w-screen-md mx-auto border-solid border-2">
-                123
+
+        <section class="intro-sec h-fit">
+            <div class="relative text-white max-w-screen-md bg-[#e3a0a3] mx-auto border-double border-white border-r-8 border-l-8 h-10">
+                
             </div>
             
         </section>
-   
-        
-        
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ba332be05cf87a112b5a57edc5947ef"></script>
+       
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ba332be05cf87a112b5a57edc5947ef"></script>
 
     <script>
+        
         var container   = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
         var options     = { //지도를 생성할 때 필요한 기본 옵션
             center: new kakao.maps.LatLng(37.51163526398582, 126.99499500754818), //지도의 중심좌표.
@@ -209,6 +209,9 @@
 
     </script>
     <script>
+        changeBorder('#e3a0a3')
+        changeBg('white');
+        changeTextColor('black');
         function createAccountPopup(title, name, account, bank){
             let popupHtml = `<!-- popup -->
                                 <div id="popup-layer" class="fixed z-index-20 top-0 left-0 w-screen h-screen bg-black/30">
@@ -239,8 +242,28 @@
                 alert("복사 완료!");
             });
         }
-        
 
+        function changeBg(rgb){
+
+            [...document.getElementsByClassName('bg-[#e3a0a3]')].forEach(item=>{
+                item.classList.remove(`bg-[#e3a0a3]`);
+                item.classList.add(`bg-${rgb}`);
+            })
+        }
+
+        function changeTextColor(rgb){
+            document.querySelectorAll('.text-white').forEach(item=>{
+                        item.classList.remove('text-white');
+                        item.classList.add(`text-[${rgb}]`)
+            })
+        }
+
+        function changeBorder(rgb){
+            document.querySelectorAll('.border-white').forEach(item=>{
+                item.classList.remove('border-white');
+                        item.classList.add(`border-[${rgb}]`)
+            })
+        }
 
     </script>
      </body>
