@@ -10,14 +10,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"> 
  
     </head>
-    <body class="min-w-[370px]">
+    
+    <body class="min-w-[370px] overflow-hidden">
 
+        <div id="intro" class="fixed w-full h-full text-2xl z-[9999] transition-all duration-700"> 
+            <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-center font-semibold text-gray-800">
+                <div class="w-[300px]">
+                    <span class="text-3xl sm:text-4xl">이동욱</span><span class="text-xl sm:text-2xl">&nbsp;그리고&nbsp;</span><span class="text-3xl sm:text-4xl">김혜미</span>
+                </div>
+                </br>
+                <div class="text-3xl sm:text-4xl">저희,&nbsp;결혼합니다!</div>
+            </div>
+        </div>
+
+        <!-- dday -->
         <div class="fixed w-fit h-fit top-[0px] bg-gray-400 z-[999] rounded-br-xl">
             <div class="relative font-semibold text-base sm:text-lg text-white m-3" id="dday"></div>
         </div>
 
         <!-- intro -->
-        <section class="intro-sec h-full text-center">
+        <section class="intro-sec h-full text-center blur-2xl transition-all duration-700 ">
             <div class="relative h-full bg-[#f7f7f7]">
                 <div class="transition-all absolute bg-white/70 w-full h-[7%] sm:h-[10%] top-[15%] sm:top-[20%]">
                             <div class="relative top-[20%] sm:top-[25%] opacity-100 font-['songle']">
@@ -219,15 +231,16 @@
                     </div>
                 </div>
             </div>
+            <img class="w-[400px] m-auto" src="static/img/uni.png">
+
         </section>
         <!-- etc -->
 
-        <section class="intro-sec h-fit">
+        <!-- <section class="intro-sec h-fit">
             <div class="relative text-black max-w-screen-md bg-white mx-auto border-double border-white border-r-8 border-l-8 h-10">
                 
             </div>
-            
-        </section>
+        </section> -->
        
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ba332be05cf87a112b5a57edc5947ef"></script>
 
@@ -253,16 +266,15 @@
 
     </script>
     <script>
+
         //changeBorder('#e3a0a3')
         //changeBg('white');
         //changeTextColor('black');
-        window.onload = () => {
-            
-            const gap = new Date('2024-05-25') - new Date();
-            const dday = Math.floor(gap/(1000*60*60*24));
-            document.querySelector('#dday').innerText = `- ${dday}`;
-            createCal();
 
+        window.onload = () => {
+            setDday();
+            createCal();
+            removeIntro();
         }
         
         function createAccountPopup(title, name, account, bank){
@@ -364,6 +376,20 @@
             }
 
             cal.appendChild(table);
+        }
+
+        function setDday(){
+            const gap = new Date('2024-05-25') - new Date();
+            const dday = Math.floor(gap/(1000*60*60*24));
+            document.querySelector('#dday').innerText = `D - ${dday}`;
+        }
+
+        function removeIntro(){ 
+            setTimeout(()=>{
+                document.getElementsByTagName('section')[0].classList.remove('blur-2xl');
+                document.body.classList.remove('overflow-hidden');
+                document.querySelector('#intro').classList.add('hidden');
+            }, 2500)
         }
 
     </script>
