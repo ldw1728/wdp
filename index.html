@@ -15,7 +15,7 @@
     <body class="min-w-[370px] overflow-hidden">
 
         <div id="intro" class="fixed w-full h-full text-2xl z-[9999] transition-all duration-700"> 
-            <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-center font-semibold text-gray-800">
+            <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-center text-gray-800">
                 <div class="w-[300px]">
                     <span class="text-3xl sm:text-4xl">이동욱</span><span class="text-xl sm:text-2xl">&nbsp;그리고&nbsp;</span><span class="text-3xl sm:text-4xl">김혜미</span>
                 </div>
@@ -25,7 +25,7 @@
         </div>
 
         <!-- dday -->
-        <div class="fixed w-fit h-fit top-[0px] bg-gray-400 z-[999] rounded-br-xl">
+        <div class="fixed w-fit h-fit top-[0px] bg-gray-400 z-[99999] rounded-br-xl">
             <div class="relative font-semibold text-base sm:text-lg text-white m-3" id="dday"></div>
         </div>
 
@@ -273,14 +273,16 @@
         //changeBg('white');
         //changeTextColor('black');
 
-        window.onload = () => {
+        
+
+        document.addEventListener('DOMContentLoaded', ()=>{
             setDday();
             createCal();
             removeIntro();
             var sakura = new Sakura('body', {
                 fallSpeed: 0.5
             });
-        }
+        });
         
         function createAccountPopup(title, name, account, bank){
             let popupHtml = `<!-- popup -->
