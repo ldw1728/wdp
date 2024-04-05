@@ -21,7 +21,7 @@
  
     </head>
     
-    <body class="min-w-[370px] hidden">
+    <body class="min-w-[370px]">
 
         <div id="intro" class="fixed w-full h-full text-2xl z-[9999] transition-all duration-500 blur"> 
             <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-center">
@@ -130,7 +130,14 @@
                         오시는 길
                     </span>
                 </div>
-                <div class="relative m-auto w-full h-96" id="map"></div>
+                <div class="relative m-auto w-full h-96 border-solid border-[1px] rounded-lg shadow-lg" id="map"></div>
+                <div class="p-5 flex w-fit m-auto">
+                    <img class=" w-[50px] mx-3 border-solid border-[1px] rounded-lg shadow-lg cursor-pointer" src="static/img/map/tmp.svg" onclick="location.href = 'https://tmap.life/a3dbb566'">
+                    <img class=" w-[50px] mx-3 border-solid border-[1px] rounded-lg shadow-lg cursor-pointer" src="static/img/map/kkomp.png" onclick="location.href='https://kko.to/zbpI_dJ1y9'">
+                    <img class=" w-[50px] mx-3 border-solid border-[1px] rounded-lg shadow-lg cursor-pointer" src="static/img/map/nvrmp.webp" onclick="location.href='https://naver.me/GZAsttWP'">
+                </div>
+                
+
                 <div class="w-fit relative m-auto py-10 text-left">
                     <div class="text-center py-5">
                         <div class="transition-all text-xl sm:text-2xl mb-5">세빛섬 플로팅아일랜드 컨벤션(2층)</div>
@@ -283,10 +290,10 @@
         //changeTextColor('black');
 
         document.addEventListener('DOMContentLoaded', ()=>{
-            setTimeout(()=>{window.scrollTo(0, 0);}, 50)
+            setTimeout(()=>{window.scrollTo(0, 0);}, 200)
             setDday();
             createCal();
-            showBody();
+            //showBody();
             showIntro();
             var sakura = new Sakura('body', {
                 fallSpeed: 0.5
