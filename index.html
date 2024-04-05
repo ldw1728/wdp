@@ -21,9 +21,9 @@
  
     </head>
     
-    <body class="min-w-[370px] overflow-hidden">
+    <body class="min-w-[370px] overflow-hidden hidden">
 
-        <div id="intro" class="fixed w-full h-full text-2xl z-[9999] transition-all duration-700"> 
+        <div id="intro" class="fixed w-full h-full text-2xl z-[9999] transition-all duration-500 blur"> 
             <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-center">
                 <div class="w-[300px]">
                     <span class="text-3xl sm:text-4xl">이동욱</span><span class="text-xl sm:text-2xl">&nbsp;그리고&nbsp;</span><span class="text-3xl sm:text-4xl">김혜미</span>
@@ -39,7 +39,7 @@
         </div>
 
         <!-- intro -->
-        <section class="intro-sec h-full text-center blur-2xl transition-all duration-700 ">
+        <section class="intro-sec h-full text-center  transition-all duration-700 blur-2xl">
             <div class="relative h-full bg-[#f7f7f7]">
                 <div class="transition-all absolute bg-white/70 w-full h-[7%] sm:h-[10%] top-[15%] sm:top-[20%]">
                             <div class="relative top-[20%] sm:top-[25%] opacity-100 font-['songle']">
@@ -287,11 +287,16 @@
         document.addEventListener('DOMContentLoaded', ()=>{
             setDday();
             createCal();
-            removeIntro();
+            showBody();
+            showIntro();
             var sakura = new Sakura('body', {
                 fallSpeed: 0.5
             });
         });
+
+        function showBody(){
+            document.body.classList.remove('hidden');
+        }
         
         function createAccountPopup(title, name, account, bank){
             let popupHtml = `<!-- popup -->
@@ -398,6 +403,13 @@
             const gap = new Date('2024-05-25') - new Date();
             const dday = Math.floor(gap/(1000*60*60*24));
             document.querySelector('#dday').innerText = `D - ${dday}`;
+        }
+
+        function showIntro(){
+            setTimeout(()=>{
+                document.querySelector('#intro').classList.remove('blur');
+                removeIntro();
+            }, 300)
         }
 
         function removeIntro(){ 
