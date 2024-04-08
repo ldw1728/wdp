@@ -294,16 +294,17 @@
     </script>
     <script>
 
-        document.addEventListener('DOMContentLoaded', ()=>{
             setTimeout(()=>{window.scrollTo(0, 0);}, 200)
             setDday();
             createCal();
+
+        document.body.onload = () => {
             showIntro();
             showBody();
             var sakura = new Sakura('body', {
                 fallSpeed: 0.5
             });
-        });
+        }
 
         function showBody(){
             document.body.classList.remove('invisible');
