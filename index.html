@@ -22,7 +22,7 @@
  
     </head>
     
-    <body class="min-w-[370px] invisible">
+    <body class="min-w-[370px] w-full invisible">
 
         <div id="intro" class="fixed w-full h-full text-2xl z-[999] invisible"> 
             <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-center">
@@ -407,8 +407,8 @@
 
                 setTimeout(()=>{
                     document.querySelector('#intro').dataset['aos'] = 'fade-down';
-                    document.querySelector('#intro').dataset['aosDelay'] = '2000';
-                    document.querySelector('#intro').dataset['aosDuration'] = '2000';
+                    document.querySelector('#intro').dataset['aosDelay'] = '3000';
+                    document.querySelector('#intro').dataset['aosDuration'] = '3000';
                     removeIntro();
 
                 }, 500)
