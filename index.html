@@ -278,16 +278,17 @@
         document.addEventListener('DOMContentLoaded', (e)=>{
             setDday();
             createCal();
-        });
-
-        document.body.onload = () => {
             setTimeout(()=>{
                 showBody();
                 showIntro();
                 var sakura = new Sakura('html', {
-                    fallSpeed: 0.5
+                    fallSpeed: 0.5,
                 });
             }, 500);
+        });
+
+        document.body.onload = () => {
+           
             
         }
 
