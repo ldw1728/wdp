@@ -24,7 +24,7 @@
     
     <body class="min-w-[370px] invisible">
 
-        <div id="intro" class="fixed w-full h-full text-2xl z-[9999] transition-all duration-500 blur"> 
+        <div id="intro" class="fixed w-full h-full text-2xl z-[999] invisible"> 
             <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-center">
                 <div class="w-[300px]">
                     <span class="text-3xl sm:text-4xl">이동욱</span><span class="text-xl sm:text-2xl">&nbsp;그리고&nbsp;</span><span class="text-3xl sm:text-4xl">김혜미</span>
@@ -40,16 +40,16 @@
         </div>
 
         <!-- intro -->
-        <section class="intro-sec h-full text-center  transition-all duration-700 blur-2xl bg-[#f7f7f7]">
+        <section class="intro-sec h-full text-center  transition-all duration-700 bg-[#f7f7f7]">
             <div class="relative h-full top-10">
                 <div class="transition-all absolute bg-white/70 w-full h-[7%] sm:h-[10%] top-[15%] sm:top-[20%]">
                             <div class="relative top-[20%] sm:top-[25%] opacity-100 font-['songle']">
                                 <span class="transition-all text-3xl sm:text-4xl mx-5">이동욱</span>
-                                <span class="transition-all text-3xl font-bold my-5">&</span>
+                                <span class="transition-all text-3xl my-5">&</span>
                                 <span class="transition-all text-3xl sm:text-4xl mx-5">김혜미</span>
                             </div>
                 </div>
-                <img class="transition-all m-auto sm:pt-10 max-w-[320px] sm:max-w-[400px] rounded-3xl shadow-xl" src="static/img/we2.jpg">
+                <img class="transition-all m-auto max-w-[320px] sm:max-w-[400px] rounded-3xl shadow-xl" src="static/img/we2.jpg">
                 <div class="transition-all w-fit m-auto mt-10 px-10 py-7 sm:py-7 border-solid border-[1px] border-gray-400">
                     <div class="transition-all text-sm sm:text-lg">2024. 05. 25 토요일 6시 30분</div>
                     <div class="blackline m-2 border-gray-400"></div>
@@ -101,7 +101,7 @@
                         </div>
                         <div class="text-4xl">"</div>
                     </div>
-                    <div class="transition-all relative w-fit mx-auto text-lg sm:text-xl mb-10 font-['NotoSerifKR']" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1500">
+                    <div class="transition-all relative w-fit mx-auto text-lg sm:text-xl mb-10 font-['NotoSerifKR']" data-aos="fade-up" data-aos-duration="1500">
                         <div class="w-fit m-5">
                             <span class="inline-table text-xl sm:text-2xl">
                                 <div>이철호</div>
@@ -294,16 +294,19 @@
     </script>
     <script>
 
-            setTimeout(()=>{window.scrollTo(0, 0);}, 200)
+            
+
+        document.addEventListener('DOMContentLoaded', (e)=>{
             setDday();
             createCal();
-
-        document.body.onload = () => {
-            showIntro();
-            showBody();
             var sakura = new Sakura('body', {
                 fallSpeed: 0.5
             });
+        });
+
+        document.body.onload = () => {
+            showBody();
+            showIntro();
         }
 
         function showBody(){
@@ -396,18 +399,29 @@
         }
 
         function showIntro(){
-            document.body.classList.add('overflow-hidden');
             setTimeout(()=>{
-                document.querySelector('#intro').classList.remove('blur');
-                removeIntro();
-            }, 300)
+                window.scrollTo(0, 0);
+                document.body.classList.add('overflow-hidden');
+                document.getElementsByTagName('section')[0].classList.add('blur-2xl');
+                document.querySelector('#intro').classList.remove('invisible');
+
+                setTimeout(()=>{
+                    document.querySelector('#intro').dataset['aos'] = 'fade-down';
+                    document.querySelector('#intro').dataset['aosDelay'] = '2000';
+                    document.querySelector('#intro').dataset['aosDuration'] = '2000';
+                    removeIntro();
+
+                }, 500)
+
+            }, 100);
+
         }
 
         function removeIntro(){ 
             setTimeout(()=>{
                 document.getElementsByTagName('section')[0].classList.remove('blur-2xl');
                 document.body.classList.remove('overflow-hidden');
-                document.querySelector('#intro').classList.add('hidden');
+                //document.querySelector('#intro').classList.add('invisible');
             }, 1500)
         }
 
