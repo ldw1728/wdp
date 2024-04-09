@@ -22,7 +22,7 @@
  
     </head>
     
-    <body class="w-full invisible">
+    <body class="w-full" style="visibility:hidden;">
 
         <div id="intro" class="fixed w-full h-full text-2xl z-[999] invisible"> 
             <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-center">
@@ -313,7 +313,7 @@
         }
 
         function showBody(){
-            document.body.classList.remove('invisible');
+            document.body.style.visibility = 'visible';
         }
         
         function createAccountPopup(title, name, account, bank){
