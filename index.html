@@ -24,7 +24,7 @@
     
     <body class="w-full" style="visibility:hidden;">
 
-        <div id="intro" class="fixed w-full h-full text-2xl z-[999] invisible"> 
+        <div id="intro" class="absolute w-full h-full text-2xl z-[999] invisible"> 
             <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-center">
                 <div class="w-[300px]">
                     <span class="text-3xl sm:text-4xl">이동욱</span><span class="text-xl sm:text-2xl">&nbsp;그리고&nbsp;</span><span class="text-3xl sm:text-4xl">김혜미</span>
@@ -40,7 +40,7 @@
         </div>
 
         <!-- intro -->
-        <section class="intro-sec h-full text-center  transition-all duration-700 bg-[#f7f7f7]">
+        <section id="firsec" class="intro-sec h-full text-center  transition-all duration-700 bg-[#f7f7f7]">
             <div class="relative h-full top-10">
                 <div class="transition-all absolute bg-white/70 w-full h-[7%] sm:h-[10%] top-[15%] sm:top-[20%]">
                             <div class="relative top-[20%] sm:top-[25%] opacity-100 font-['songle']">
@@ -102,7 +102,7 @@
             </div>
         </section>
         <!-- photo -->
-        <section class="intro-sec h-fit bg-[#f7f7f7]">
+        <section class="intro-sec h-fit bg-[#f7f7f7] overflow-x-hidden">
             <div class="relative text-black max-w-screen-md mx-auto">
                 <div class="py-16 w-fit relative m-auto">
                     <img class="mb-5 mx-2 w-10 inline" src="static/img/map_icon.png">
@@ -281,8 +281,21 @@
             setTimeout(()=>{
                 showBody();
                 showIntro();
-                var sakura = new Sakura('html', {
-                    fallSpeed: 0.5,
+                var sakura = new Sakura('body', {
+                    fallSpeed: 0.9,
+                    maxSize:10,
+                        colors: [
+                        {
+                            gradientColorStart: 'rgba(255, 183, 197, 0.9)',
+                            gradientColorEnd: 'rgba(255, 197, 208, 0.9)',
+                            gradientColorDegree: 120,
+                        },
+                        {
+                            gradientColorStart: 'rgba(251 237 250)',
+                            gradientColorEnd: 'rgba(251 237 250)',
+                            gradientColorDegree: 120,
+                        }
+                    ],
                 });
             }, 500);
         });
@@ -333,7 +346,7 @@
             // 복사가 완료되면 이 부분이 호출된다.
                 alert("복사 완료");
             }).catch((error)=>{
-                console.log(error)
+                console.log(error);
             });
         }
 
