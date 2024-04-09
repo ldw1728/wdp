@@ -299,14 +299,14 @@
         document.addEventListener('DOMContentLoaded', (e)=>{
             setDday();
             createCal();
-            var sakura = new Sakura('body', {
-                fallSpeed: 0.5
-            });
         });
 
         document.body.onload = () => {
             showBody();
             showIntro();
+            var sakura = new Sakura('body', {
+                fallSpeed: 0.5
+            });
         }
 
         function showBody(){
