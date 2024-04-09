@@ -22,7 +22,7 @@
  
     </head>
     
-    <body class="min-w-[370px] w-full invisible">
+    <body class="w-full invisible">
 
         <div id="intro" class="fixed w-full h-full text-2xl z-[999] invisible"> 
             <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-center">
@@ -302,11 +302,14 @@
         });
 
         document.body.onload = () => {
-            showBody();
-            showIntro();
-            var sakura = new Sakura('body', {
-                fallSpeed: 0.5
-            });
+            setTimeout(()=>{
+                showBody();
+                showIntro();
+                var sakura = new Sakura('html', {
+                    fallSpeed: 0.5
+                });
+            }, 500);
+            
         }
 
         function showBody(){
@@ -399,7 +402,9 @@
         }
 
         function showIntro(){
-            setTimeout(()=>{
+
+            let exec = () => {
+                setTimeout(()=>{
                 window.scrollTo(0, 0);
                 document.body.classList.add('overflow-hidden');
                 document.getElementsByTagName('section')[0].classList.add('blur-2xl');
@@ -414,6 +419,15 @@
                 }, 500)
 
             }, 100);
+            }
+
+            if(!document.body.classList.contains('invisible')){
+                exec();
+            }
+            else{
+                showIntro();
+            }
+            
 
         }
 
