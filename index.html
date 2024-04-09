@@ -245,7 +245,6 @@
        
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ba332be05cf87a112b5a57edc5947ef"></script>
         <script type="text/javascript" src="static/sakura/sakura.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
 
     <script>
         
@@ -311,13 +310,17 @@
                                             <div>예금주 : ${name}</div>
                                         </div>
                                         <div class=" border-solid border-t-2">
-                                            <button id="btn" class="relative text-center p-3 float-left w-[50%] border-solid border-r-2" data-clipboard-text="#accaountIpt" onclick="copy('${account}')">복사</button>
+                                            <button id="btn" class="btn relative text-center p-3 float-left w-[50%] border-solid border-r-2" onclick="copy('${account}')">복사</button>
                                             <button class="relative text-center p-3 float-right w-[50%]" onclick="closePopup()">닫기</button>
                                         </div>
                                     </div> 
                                 </div>`;
             document.body.insertAdjacentHTML("afterend", popupHtml);
             document.body.classList.add('overflow-hidden');
+        }
+
+        function initClipBoard(){
+            new ClipboardJS('.btn');
         }
 
         function closePopup(){
@@ -329,6 +332,8 @@
             navigator.clipboard.writeText(text).then(() => {
             // 복사가 완료되면 이 부분이 호출된다.
                 alert("복사 완료");
+            }).catch((error)=>{
+                console.log(error)
             });
         }
 
