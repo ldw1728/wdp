@@ -182,7 +182,7 @@
                                 <img class="w-8 h-8 p-1" src="static/img/call_icon.png" onclick="location.href='tel:+821089799002'">
                             </div>
                             <div class="transition-all hover:cursor-pointer hover:shadow-lg hover:scale-110 inline-block w-13 h-13  border-solid border-[1px] border-black rounded-lg mx-1">
-                                <img class="w-8 h-8 p-1" src="static/img/mon_icon.png" onclick="createAccountPopup('', '이동욱', '3333-02-1459962', '카카오뱅크')">
+                                <img class="w-8 h-8 p-1" src="static/img/mon_icon.png" onclick="createAccountPopup('', '김혜미', '3333-02-1354867', '카카오뱅크')">
                             </div>
                         </div>
                     </div>
@@ -226,7 +226,7 @@
                                 <img class="w-8 h-8 p-1" src="static/img/call_icon.png" onclick="location.href='tel:+821097409002'">
                             </div>
                             <div class="transition-all hover:cursor-pointer hover:shadow-lg hover:scale-110 inline-block w-13 h-13  border-solid border-[1px] border-black rounded-lg mx-1">
-                                <img class="w-8 h-8 p-1" src="static/img/mon_icon.png" onclick="createAccountPopup('', '김선근', '16701326180', '농협은행')">
+                                <img class="w-8 h-8 p-1" src="static/img/mon_icon.png" onclick="createAccountPopup('', '장순실', '11612314461', '농협은행')">
                             </div>
                         </div>
                     </div>
@@ -245,6 +245,7 @@
        
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ba332be05cf87a112b5a57edc5947ef"></script>
         <script type="text/javascript" src="static/sakura/sakura.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
 
     <script>
         
@@ -295,26 +296,28 @@
         function showBody(){
             document.body.style.visibility = 'visible';
         }
+
         
         function createAccountPopup(title, name, account, bank){
             let popupHtml = `<!-- popup -->
-                                <div id="popup-layer" class="fixed z-index-20 top-0 left-0 w-full h-full bg-black/30">
+                                <div id="popup-layer" class="fixed z-[999] top-0 left-0 w-full h-full bg-black/30">
                                     <div id="popup" class="absolute rounded-xl shadow-2xl bg-white top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[300px]">
                                         <div class=""></div>
                                         ${title ? `<div id="title" class="relative text-center p-5">${title}</div>` : ''}
                                         <div id="content" class="relative text-center p-5">
                                             <div id="bank">${bank}</div>
                                             <div id="accaount">${account}</div>
+                                            <input id="accaountIpt" type="hidden" value="${account}"></input>
                                             <div>예금주 : ${name}</div>
                                         </div>
                                         <div class=" border-solid border-t-2">
-                                            <span class="relative text-center p-3 float-left w-[50%] border-solid border-r-2" onclick="copy('${account}')">복사</span>
-                                            <span class="relative text-center p-3 float-right w-[50%]" onclick="closePopup()">닫기</span>
+                                            <button id="btn" class="relative text-center p-3 float-left w-[50%] border-solid border-r-2" data-clipboard-text="#accaountIpt" onclick="copy('${account}')">복사</button>
+                                            <button class="relative text-center p-3 float-right w-[50%]" onclick="closePopup()">닫기</button>
                                         </div>
                                     </div> 
                                 </div>`;
             document.body.insertAdjacentHTML("afterend", popupHtml);
-            document.body.classList.add('overflow-hidden')
+            document.body.classList.add('overflow-hidden');
         }
 
         function closePopup(){
@@ -323,7 +326,7 @@
         }
 
         function copy(text){
-            window.navigator.clipboard.writeText(text).then(() => {
+            navigator.clipboard.writeText(text).then(() => {
             // 복사가 완료되면 이 부분이 호출된다.
                 alert("복사 완료");
             });
@@ -415,7 +418,7 @@
             setTimeout(()=>{
                 document.getElementsByTagName('section')[0].classList.remove('blur-2xl');
                 document.body.classList.remove('overflow-hidden');
-                //document.querySelector('#intro').classList.add('invisible');
+                document.querySelector('#intro').classList.add('invisible');
             }, 1500)
         }
 
