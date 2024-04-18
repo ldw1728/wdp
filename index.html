@@ -157,8 +157,23 @@
                 </div>
             </div>
         </section>
-        <!-- map -->
         <section class="intro-sec h-fit bg-white">
+            <div class="relative text-black max-w-screen-md mx-auto my-16">
+                <div class="w-full text-center text-2xl sm:text-3xl pb-16" data-aos="fade-up" data-aos-duration="1500">
+                    방명록
+                </div>
+                <div id="postBox" class="w-fit max-h-[500px] m-auto overflow-y-scroll" data-aos="fade-up" data-aos-duration="1500">
+                
+                    
+                </div>
+                <div class="text-center w-fit m-auto my-10 cursor-pointer" id="writeBtn">
+                    작성하기
+                    <div class="blackline"></div>
+                </div>
+            </div>
+        </section>
+        <!-- map -->
+        <section class="intro-sec h-fit bg-[#f7f7f7]">
             <div class="relative text-black max-w-screen-md mx-auto">
                 <div class="w-full text-center text-2xl sm:text-3xl py-16" data-aos="fade-up" data-aos-duration="1500">
                     마음 전하실 곳
@@ -244,10 +259,23 @@
         </section> -->
        
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8ba332be05cf87a112b5a57edc5947ef"></script>
-        <script type="text/javascript" src="static/sakura/sakura.js"></script>
+        <script type="text/javascript" src="./static/sakura/sakura.js"></script>
+        <script type="module">
+            import { savePost, getAllPost, rltnType, attnType } from "./static/js/fbdb.js"
+            rltnType.then((value)=>{
+                window.rltnType = value;
+            });
+            attnType.then((value)=>{
+                window.attnType = value;
+            });
+            getAllPost().then((value)=>{
+                setAllPost(value);
+            });
+            window.savePost = savePost
+        </script>
+
 
     <script>
-        
         /* AOS */
         AOS.init();
 
@@ -280,7 +308,7 @@
             createCal();
             setTimeout(()=>{
                 showBody();
-                showIntro();
+                //showIntro();
                 var sakura = new Sakura('body', {
                     fallSpeed: 0.9,
                     maxSize:10,
@@ -298,21 +326,141 @@
                     ],
                 });
             }, 500);
-        });
 
-        document.body.onload = () => {
-           
-            
-        }
+            document.querySelector('#writeBtn').addEventListener('click', ()=>{
+                writePostPopup('등록하기')
+            });
+        });
 
         function showBody(){
             document.body.style.visibility = 'visible';
         }
 
+        function setAllPost(posts){
+
+                let postBox     = document.querySelector('#postBox');
+                let postHtmlStr = '';
+
+                for (const [key, value] of Object.entries(posts)) {
+
+                    const post = value;
+
+                    postHtmlStr += `
+                            <div class="transition-all min-w-[300px] sm:min-w-[450px] h-fit bg-[#f7f7f7] m-3 px-3 pb-3 rounded-xl shadow-md">
+                                <div class="p-1 font-['songle'] text-xl sm:text-2xl whitespace-pre-line">
+                                    ${post.content}
+                                </div>
+                                <div class="flex justify-end text-xs sm:text-sm text-neutral-500">
+                                    <div class="p-1 w-fit">${post.name}</div>
+                                    <div class="p-1 w-fit">
+                                        ${post.regDt}
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                } 
+                
+                if(postHtmlStr){
+                    postBox.insertAdjacentHTML('beforeend', postHtmlStr);
+                }
+        }
+
+        function writePostPopup(title){
+
+            let attnTypeTagStr = '';
+            let rltnTypeTagStr = '';
+
+            if(window.attnType){
+                for (const [key, value] of Object.entries(window.attnType)) {
+                    attnTypeTagStr += `<option value="${key}">${value}</option>`;
+                }
+                
+            }
+
+            if(window.rltnType){
+                for (const [key, value] of Object.entries(window.rltnType)) {
+                    rltnTypeTagStr += `<option value="${key}">${value}</option>`;
+                }
+                
+            }
+
+            let popupHtml = `<!-- popup -->
+                                <div id="popup-layer" class="fixed z-[999] top-0 left-0 w-full h-full bg-black/30 font-['NotoSerifKR']">
+                                    <div id="popup" class="transition-all absolute rounded-xl shadow-2xl bg-white top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px]">
+                                        ${title ? `<div id="title" class="relative text-center p-5">${title}</div>` : ''}
+                                        <div id="content" class="relative text-center p-5">
+                                            <table class='w-full'>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>
+                                                            이름
+                                                        </th>
+                                                        <td>
+                                                            <input type='text' id="name" class='rounded-md ring-1 ring-inset ring-gray-300 p-2 w-full' placeholder='이름'>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            관계
+                                                        </th>
+                                                        <td>
+                                                            <select id="rltnType" class='rounded-md ring-1 ring-inset ring-gray-300 p-2 w-full' placeholder='관계'>
+                                                                ${rltnTypeTagStr}
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            참석여부
+                                                        </th>
+                                                        <td>
+                                                            <select id="attnType" class='rounded-md ring-1 ring-inset ring-gray-300 p-2 w-full' placeholder='이름'>
+                                                                ${attnTypeTagStr}
+                                                            </select>                                                        
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            내용
+                                                        </th>
+                                                        <td>
+                                                            <textarea id="contentText" class='rounded-md h-[150px] ring-1 ring-inset ring-gray-300 p-2 w-full' placeholder='내용'></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class=" border-solid border-t-2">
+                                            <button id="btn" class="btn relative text-center p-3 float-left w-[50%] border-solid border-r-2" onclick="savePost_popup()">등록</button>
+                                            <button class="relative text-center p-3 float-right w-[50%]" onclick="closePopup()">닫기</button>
+                                        </div>
+                                    </div> 
+                                </div>`;
+            document.body.insertAdjacentHTML("afterend", popupHtml);
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function savePost_popup(){
+
+            const popup = document.querySelector('#popup');
+
+            const params = {
+                name        :popup.querySelector('#name').value,
+                rltnType    :popup.querySelector('#rltnType').value,
+                attndType    :popup.querySelector('#attnType').value,
+                content     :popup.querySelector('#contentText').value,
+                sucCb       :()=>{  alert('등록 되었습니다.'); location.reload(); },
+                failCb      :()=>{  alert('오류가 발생하였습니다. 잠시후 다시 이용해 주세요');  }
+            }
+
+            window.savePost(params);
+            
+
+        }
         
         function createAccountPopup(title, name, account, bank){
             let popupHtml = `<!-- popup -->
-                                <div id="popup-layer" class="fixed z-[999] top-0 left-0 w-full h-full bg-black/30">
+                                <div id="popup-layer" class="fixed z-[999] top-0 left-0 w-full h-full bg-black/30 font-['NotoSerifKR']">
                                     <div id="popup" class="absolute rounded-xl shadow-2xl bg-white top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[300px]">
                                         <div class=""></div>
                                         ${title ? `<div id="title" class="relative text-center p-5">${title}</div>` : ''}

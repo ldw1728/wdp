@@ -3,10 +3,6 @@
     font-style: normal;
     src: url("../font/NotoSerifKR-Regular.otf") format("opentype"); /* 폰트파일 불러오기 */
 }
-@font-face {
-    font-family: "nulit"; /* 사용하고 싶은 font-family명을 지정 */
-    src: url("../font/nulit.ttf") format("truetype"); /* 폰트파일 불러오기 */
-}
 
 @font-face {
     font-family: "songle"; /* 사용하고 싶은 font-family명을 지정 */
@@ -50,4 +46,8 @@ section {
     width: auto;
     height: 1px;
     border-radius: 10px;
+}
+
+table td {
+    padding : 3px
 }
